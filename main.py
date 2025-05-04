@@ -5,7 +5,6 @@ import os
 
 
 def predict_rub_salary(salary):
-    """Predict salary for HeadHunter vacancies."""
     if salary and salary["currency"] == "RUR":
         if salary["from"] and salary["to"]:
             return int((salary["from"] + salary["to"]) / 2)
@@ -17,7 +16,6 @@ def predict_rub_salary(salary):
 
 
 def predict_rub_salary_for_superjob(vacancy):
-    """Predict salary for SuperJob vacancies."""
     payment_from = vacancy.get("payment_from")
     payment_to = vacancy.get("payment_to")
     currency = vacancy.get("currency")
@@ -33,7 +31,6 @@ def predict_rub_salary_for_superjob(vacancy):
 
 
 def get_statistic_hh(languages):
-    """Fetch vacancy statistics from HeadHunter API."""
     vacancies_summary = {}
     for language in languages:
         total_salary = []
@@ -72,12 +69,11 @@ def get_statistic_hh(languages):
 
 
 def get_superjob_stats(languages):
-    """Fetch vacancy statistics from SuperJob API."""
     url = "https://api.superjob.ru/2.0/vacancies/"
     headers = {
         "X-Api-App-Id": os.getenv(
             "SUPERJOB_API_KEY",
-            "v3.r.138973226.71830a2e496de75825a80bd0500a92e92ff36e6c.ed8352ce14838a8ce972fbcb3c1074e5611170a0",
+            "keysuperjob",
         )
     }
     stats = {}
@@ -118,7 +114,6 @@ def get_superjob_stats(languages):
 
 
 def print_stats_table(stats, platform="SuperJob"):
-    """Generate ASCII table for vacancy statistics."""
     table_data = [
         [
             "Язык программирования",
